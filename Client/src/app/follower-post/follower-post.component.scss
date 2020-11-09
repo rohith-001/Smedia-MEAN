@@ -1,0 +1,23 @@
+.example-header-image {
+    background-size: cover;
+  }
+  
+  .example-card{
+      margin-bottom: 10px;
+  }
+  .example-full-width {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .home___cardContainer {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .comment___name {
+    font-weight: bold;
+  }

@@ -1,0 +1,29 @@
+<div>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">DEV</span>
+            <span class="example-spacer"></span>
+            <button routerLink="/signin" routerLinkActive="active"  mat-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                Signin
+            </button>
+            <button routerLink="/signup" routerLinkActive="active" mat-button class="example-icon" aria-label="Example icon-button with share icon">
+                Signup
+            </button>
+            <button routerLink="/home" routerLinkActive="active" mat-button class="example-icon" aria-label="Example icon-button with share icon">
+                Home
+            </button>
+            <button routerLink="/followerPost" routerLinkActive="active" mat-button class="example-icon" aria-label="Example icon-button with share icon">
+                Follower Post
+            </button>
+            <button routerLink="/profile" routerLinkActive="active" mat-button class="example-icon" aria-label="Example icon-button with share icon">
+                Profile
+            </button>
+            <button routerLink="/createPost" routerLinkActive="active" mat-button class="example-icon" aria-label="Example icon-button with share icon">
+                Create post
+            </button>
+            <button mat-button class="example-icon" (click)="signOut()" aria-label="Example icon-button with share icon">
+                Signout
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

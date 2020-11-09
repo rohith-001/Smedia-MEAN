@@ -1,0 +1,21 @@
+<div class="profile___header">
+    <div>
+        <img class="profile___pic" src={{user.pic}} alt="profile-image">
+    </div>
+
+    <div>
+        <h1>{{user.name}}</h1>
+        <div>
+            <div><span>{{datas.mypost?.length}}</span>Posts</div>
+            <div><span>{{user.followers?.length}}</span>Followers</div>
+            <div><span>{{user.following?.length}}</span>Following</div>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="profile___body">
+    <img *ngFor="let data of datas.mypost" src={{data.photo}} alt={{data.title}}>
+</div>
+

@@ -1,0 +1,23 @@
+<div class="profile___header">
+    <div>
+        <img  class="profile___pic" src={{datas.user.pic}} alt="profile-image">
+    </div>
+
+    <div>
+        <h1>{{datas.user.name}}</h1>
+        <button color="primary" (click)="follow(datas.user._id)" mat-raised-button>FOLLOW</button>&nbsp;&nbsp;
+        <button (click)="unfollow(datas.user._id)" mat-raised-button>UNFOLLOW</button><br><br>
+        <div>
+            <div><span>{{datas.posts?.length}}</span>Posts</div>
+            <div><span>{{datas.user.followers?.length}}</span>Followers</div>
+            <div><span>{{datas.user.following?.length}}</span>Following</div>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="profile___body">
+    <img *ngFor="let data of datas.posts" src={{data.photo}} alt={{data.title}}>
+</div>
+

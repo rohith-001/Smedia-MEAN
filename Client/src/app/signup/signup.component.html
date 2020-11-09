@@ -1,0 +1,48 @@
+<form class="signup">
+  <mat-card>
+    <div style="text-align: center;">
+      <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">DEV</h1>
+    </div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input matInput [value]="data.name" (input)="data.name=$event.target.value" placeholder="Simple placeholder">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput [value]="data.email" (input)="data.email=$event.target.value" [formControl]="emailFormControl"
+        placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input [value]="data.password" (input)="data.password=$event.target.value" type="password" matInput
+        placeholder="Simple placeholder">
+    </mat-form-field>
+    <br>
+    <div class="example-full-width">
+        <input mat-raised-button type="file" (change)="selectImage($event)" id="myfile" name="myfile">
+    </div>
+    <br>
+    <button (click)="submit()" mat-raised-button color="primary">Signup</button>
+  </mat-card>
+</form>
+<br>
+<div style="text-align: center;">
+  <!-- <div>
+    <button type="button" mat-raised-button color="accent" (click)="signInWithFB()">Sign In With Facebook</button>&nbsp;
+    <button type="button" mat-raised-button color="accent" (click)="signInWithGoogle()">Sign In With Google</button>&nbsp;
+    <button type="button" mat-raised-button color="accent" (click)="send()">Send Guser data</button>
+  </div> -->
+  <!-- <div *ngIf="user">
+    <img src="{{ user.photoUrl }}">
+    <h4>{{user.name}}</h4>
+    <p>{{user.email}}</p>
+  </div> -->
+</div>

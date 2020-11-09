@@ -1,0 +1,19 @@
+<form class="createPost">
+<mat-card>
+     <mat-form-field class="example-full-width">
+        <mat-label>Title</mat-label>
+        <input matInput [value]="data.title" (input)="data.title=$event.target.value" placeholder="Simple placeholder">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+        <mat-label>Body</mat-label>
+        <input matInput [value]="data.body" (input)="data.body=$event.target.value" placeholder="Simple placeholder">
+    </mat-form-field >
+    <br>
+    <div>
+        <input mat-raised-button type="file" (change)="selectImage($event)" id="myfile" name="myfile">
+    </div>
+    <br>
+    <button mat-raised-button color="primary" (click)="submit()">Submit post</button>
+</mat-card>
+</form>

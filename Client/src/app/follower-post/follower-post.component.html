@@ -1,0 +1,38 @@
+<div class="home___cardContainer">
+    <div *ngFor="let data of datas.posts">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="examaple-header-image"></div>
+          <mat-card-title>{{data.title}}</mat-card-title>
+          <mat-card-subtitle>
+          <ng-container *ngIf="data.postedBy._id === user._id; else elseTemplate">
+            <span routerLink="/profile">{{data.postedBy.name}}</span>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <span [routerLink]="[ '/profile', data.postedBy._id]">{{data.postedBy.name}}</span>
+          </ng-template>
+        </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src={{data.photo}} alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            {{data.body}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button color="primary" (click)="like(data)" mat-raised-button>{{data.likes?.length+" LIKES"}}</button>
+          <button (click)="unlike(data)" mat-button>DISLIKE</button>
+          <button (click)="deletePost(data)" color="accent"mat-raised-button>DELETE</button>
+          <div>
+            <br>
+            <p *ngFor="let comment of data.comments"><span class="comment___name">{{comment.postedBy.name+'&nbsp;'}}</span>{{comment.text}}</p>
+          </div>
+          <mat-form-field id='myForm' class="example-full-width">
+            <mat-label>Leave a comment</mat-label>
+            <input  (change)="onSubmit($event,data)" matInput placeholder="Ex. It makes me feel...">
+          </mat-form-field>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <!-- <button (click)="like()" mat-button>name</button> -->
+</div>
