@@ -8,7 +8,11 @@ import { UserService } from '../user.service'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private Post: UserService) { }
+  constructor(private Post: UserService) {
+    if(!this.user){
+      location.replace("/signup")
+    }
+   }
 
   ngOnInit(): void {
     this.Post.allPost().subscribe(
@@ -53,8 +57,20 @@ export class HomeComponent implements OnInit {
       this.datas.posts = this.datas.posts.filter(item => {
         return item._id !== this.delete._id
       })
-      console.log(this.datas)
     })
+  }
+
+  likeCheck(data: Array<string>){
+  return data.includes(this.user._id)
+  }
+
+  deleteCheck(data){
+    if(data.postedBy._id == this.user._id){
+      return true
+    }
+    else{
+      return false
+    }
   }
 
   datas = null;

@@ -1,7 +1,7 @@
 <form class="signup">
   <mat-card>
     <div style="text-align: center;">
-      <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">DEV</h1>
+      <h1>Sign up</h1>
     </div>
     <mat-form-field class="example-full-width">
       <mat-label>Name</mat-label>
@@ -27,10 +27,17 @@
     </mat-form-field>
     <br>
     <div class="example-full-width">
-        <input mat-raised-button type="file" (change)="selectImage($event)" id="myfile" name="myfile">
+      <label for="#myfile">Profile pic </label>
+        <input type="file" (change)="selectImage($event)" id="myfile" name="myfile">
     </div>
     <br>
-    <button (click)="submit()" mat-raised-button color="primary">Signup</button>
+    <div style="text-align: right;">
+      <a href="/signin">Already have an account?</a>
+    </div>
+    <br>
+    <div style="text-align: center;">
+      <button (click)="submit()" mat-raised-button color="primary">Signup</button>
+    </div>
   </mat-card>
 </form>
 <br>

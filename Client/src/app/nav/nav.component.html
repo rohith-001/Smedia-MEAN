@@ -1,29 +1,76 @@
-<div>
+<div style="height: 90vh;">
     <mat-toolbar color="primary">
-        <mat-toolbar-row>
-            <span style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">DEV</span>
-            <span class="example-spacer"></span>
-            <button routerLink="/signin" routerLinkActive="active"  mat-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-                Signin
-            </button>
-            <button routerLink="/signup" routerLinkActive="active" mat-button class="example-icon" aria-label="Example icon-button with share icon">
-                Signup
-            </button>
-            <button routerLink="/home" routerLinkActive="active" mat-button class="example-icon" aria-label="Example icon-button with share icon">
-                Home
-            </button>
-            <button routerLink="/followerPost" routerLinkActive="active" mat-button class="example-icon" aria-label="Example icon-button with share icon">
-                Follower Post
-            </button>
-            <button routerLink="/profile" routerLinkActive="active" mat-button class="example-icon" aria-label="Example icon-button with share icon">
-                Profile
-            </button>
-            <button routerLink="/createPost" routerLinkActive="active" mat-button class="example-icon" aria-label="Example icon-button with share icon">
-                Create post
-            </button>
-            <button mat-button class="example-icon" (click)="signOut()" aria-label="Example icon-button with share icon">
-                Signout
-            </button>
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">SMEDIA</span>
+        <span class="menu-spacer"></span>
+        <div fxShow="true" fxHide.lt-md>
+            <ng-container *ngIf="register()">
+                <button routerLink="/signin" mat-button class="example-icon favorite-icon">
+                    Signin
+                </button>
+                <button routerLink="/signup" mat-button class="example-icon">
+                    Signup
+                </button>
+            </ng-container>
+                <button routerLink="/search" (click)="userCheck()" mat-button class="example-icon">
+                    Search
+                </button>
+                <button routerLink="/home" (click)="userCheck()" mat-button class="example-icon">
+                    Home
+                </button>
+                <button routerLink="/followerPost" (click)="userCheck()" mat-button class="example-icon">
+                    Follower Post
+                </button>
+                <button routerLink="/profile" (click)="userCheck()" mat-button class="example-icon">
+                    Profile
+                </button>
+                <button routerLink="/createPost" (click)="userCheck()" mat-button class="example-icon">
+                    Create post
+                </button>
+                <button mat-button class="example-icon" (click)="signOut()">
+                    Signout
+                </button>
+            </div>
         </mat-toolbar-row>
-    </mat-toolbar>
-</div>
+      </mat-toolbar>
+    
+      <mat-sidenav-container fxFlexFill>
+        <mat-sidenav #sidenav>
+          <mat-nav-list>
+            <ng-container *ngIf="register()">
+                <a routerLink="/signin" mat-list-item class="example-icon favorite-icon">
+                    Signin
+                </a>
+                <a routerLink="/signup" mat-list-item class="example-icon">
+                    Signup
+                </a>
+            </ng-container>
+                <a routerLink="/search" (click)="userCheck()" mat-list-item class="example-icon">
+                    Search
+                </a>
+                <a routerLink="/home" (click)="userCheck()" mat-list-item class="example-icon">
+                    Home
+                </a>
+                <a routerLink="/followerPost" (click)="userCheck()" mat-list-item class="example-icon">
+                    Follower Post
+                </a>
+                <a routerLink="/profile" (click)="userCheck()" mat-list-item class="example-icon">
+                    Profile
+                </a>
+                <a routerLink="/createPost" (click)="userCheck()" mat-list-item class="example-icon">
+                    Create post
+                </a>
+                <a mat-list-item class="example-icon" (click)="userCheck()" (click)="signOut()">
+                    Signout
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill>
+            <br>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </div>

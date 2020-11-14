@@ -14,6 +14,8 @@ import { HomeComponent } from './home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule} from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
@@ -25,6 +27,11 @@ import {
 } from 'angularx-social-login';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FollowerPostComponent } from './follower-post/follower-post.component';
+import { ResetpasswordEmailComponent } from './resetpassword-email/resetpassword-email.component';
+import { ResetpasswordNewpasswordComponent } from './resetpassword-newpassword/resetpassword-newpassword.component';
+import { SearchComponent } from './search/search.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 
 @NgModule({
   declarations: [
@@ -36,17 +43,23 @@ import { FollowerPostComponent } from './follower-post/follower-post.component';
     SigninComponent,
     SignupComponent,
     UserProfileComponent,
-    FollowerPostComponent
+    FollowerPostComponent,
+    ResetpasswordEmailComponent,
+    ResetpasswordNewpasswordComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     SocialLoginModule,
     AppRoutingModule,
     HttpClientModule,
+    FlexLayoutModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
     MatIconModule,
     MatButtonModule,
     MatInputModule,

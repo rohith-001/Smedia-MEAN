@@ -2,12 +2,21 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-// const passport = require('passport');
 const bcrypt = require("bcrypt");
-require("dotenv").config();
-// const requireLogin = require("../middleware/requireLogin");
+const crypto = require('crypto');
 const User = mongoose.model("User");
 const GUser = mongoose.model("GUser");
+const nodemailer = require('nodemailer');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
+require("dotenv").config();
+// const passport = require('passport');
+// const requireLogin = require("../middleware/requireLogin");
+
+const  transporter = nodemailer.createTransport(sendgridTransport({
+  auth:{
+    api_key: process.env.NODE_MAILER
+  }
+}))
 
 router.get("/404", (req, res) => {
   res.json({ message: "404 page" });
@@ -61,6 +70,12 @@ router.post("/signup", (req, res) => {
           user
             .save()
             .then(() => {
+              transporter.sendMail({
+                to:user.email,
+                from:"rohithkumar1319@gmail.com",
+                subject:"signup successfully",
+                html:"<h1>Welcome to smedia</h1>"
+              })
               res.json({ message: "saved Successfully" });
             })
             .catch((err) => console.log(err));
@@ -97,6 +112,62 @@ router.post("/signin", (req, res) => {
       .catch((err) => console.log(err));
   });
 });
+
+router.post('/reset-password',(req,res)=>{
+  crypto.randomBytes(32,(err,buffer)=>{
+      if(err){
+          console.log(err)
+      }
+      const token = buffer.toString("hex")
+      User.findOne({email:req.body.email})
+      .then(user=>{
+          if(!user){
+              return res.status(422).json({error:"User dont exists with that email"})
+          }
+          user.resetToken = token
+          user.expireToken = Date.now() + 3600000
+          user.save().then((result)=>{
+              transporter.sendMail({
+                  to:user.email,
+                  from:"rohithkumar1319@gmail.com",
+                  subject:"password reset",
+                  html:`
+                  <p>You requested for password reset</p>
+                  <h5>click in this <a href="http://localhost:4200/reset/${token}">link</a> to reset password</h5>
+                  `
+                  // html:`
+                  // <p>You requested for password reset</p>
+                  // <h5>click in this <a href="${EMAIL}/reset/${token}">link</a> to reset password</h5>
+                  // `
+              })
+              res.json({message:"check your email"})
+          })
+
+      })
+  })
+})
+
+router.post('/new-password',(req,res)=>{
+ const newPassword = req.body.password
+ const sentToken = req.body.token
+ User.findOne({resetToken:sentToken,expireToken:{$gt:Date.now()}})
+ .then(user=>{
+     if(!user){
+         return res.status(422).json({error:"Try again session expired"})
+     }
+     bcrypt.hash(newPassword,12).then(hashedpassword=>{
+        user.password = hashedpassword
+        user.resetToken = undefined
+        user.expireToken = undefined
+        user.save().then((saveduser)=>{
+            res.json({message:"password updated success"})
+        })
+     })
+ }).catch(err=>{
+     console.log(err)
+ })
+})
+
 
 // router.get("/google", passport.authenticate('google', {scope: ['profile', 'email']}));
 

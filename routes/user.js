@@ -1,9 +1,9 @@
-const express = require('express')
-const router = express.Router()
-const mongoose = require('mongoose')
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
 const requireLogin = require("../middleware/requireLogin");
-const Post =  mongoose.model("Post")
-const User = mongoose.model("User")
+const Post =  mongoose.model("Post");
+const User = mongoose.model("User");
 
 
 router.get('/user/:id',requireLogin,(req,res)=>{
@@ -45,6 +45,7 @@ router.put('/follow',requireLogin,(req,res)=>{
     }
     )
 })
+
 router.put('/unfollow',requireLogin,(req,res)=>{
     User.findByIdAndUpdate(req.body.unfollowId,{
         $pull:{followers:req.user._id}
@@ -77,8 +78,6 @@ router.put('/updatepic',requireLogin,(req,res)=>{
          res.json(result)
     })
 })
-
-
 
 router.post('/search-users',(req,res)=>{
     let userPattern = new RegExp("^"+req.body.query)

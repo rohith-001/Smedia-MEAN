@@ -47,7 +47,12 @@ export class CreatePostComponent implements OnInit {
   }
 
   submit(){
-    this.userService.createPost(this.data).subscribe(data => console.log(data))
+    this.userService.createPost(this.data).subscribe(data => {
+      console.log(data)
+      if(data){
+        location.replace("/home")
+      }
+    })
   }
 
 }

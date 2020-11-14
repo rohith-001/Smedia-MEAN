@@ -5,8 +5,12 @@
 
     <div>
         <h1>{{datas.user.name}}</h1>
-        <button color="primary" (click)="follow(datas.user._id)" mat-raised-button>FOLLOW</button>&nbsp;&nbsp;
-        <button (click)="unfollow(datas.user._id)" mat-raised-button>UNFOLLOW</button><br><br>
+        <ng-container *ngIf="checkFollowers(datas.user.followers); else elseTemplate">
+            <button (click)="unfollow(datas.user._id)" mat-raised-button>UNFOLLOW</button><br><br>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <button color="primary" (click)="follow(datas.user._id)" mat-raised-button>FOLLOW</button>&nbsp;&nbsp;
+        </ng-template>
         <div>
             <div><span>{{datas.posts?.length}}</span>Posts</div>
             <div><span>{{datas.user.followers?.length}}</span>Followers</div>

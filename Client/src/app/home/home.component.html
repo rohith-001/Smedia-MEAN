@@ -1,4 +1,5 @@
 <div class="home___cardContainer">
+  <!-- <button (click)="likeCheck()">check</button> -->
     <div *ngFor="let data of datas.posts">
       <mat-card class="example-card">
         <mat-card-header>
@@ -20,9 +21,13 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button color="primary" (click)="like(data)" mat-raised-button>{{data.likes?.length+" LIKES"}}</button>
-          <button (click)="unlike(data)" mat-button>DISLIKE</button>
-          <button (click)="deletePost(data)" color="accent"mat-raised-button>DELETE</button>
+          <ng-container *ngIf="likeCheck(data.likes); else likeTemplate">
+            <button (click)="unlike(data)" color="primary" mat-raised-button>{{data.likes?.length+" LIKES"}}</button>
+          </ng-container>
+          <ng-template #likeTemplate>
+            <button color="primary" (click)="like(data)" mat-button>{{data.likes?.length+" LIKES"}}</button>
+          </ng-template>
+          <button *ngIf="deleteCheck(data)" (click)="deletePost(data)" color="accent"mat-raised-button>DELETE</button>
           <div>
             <br>
             <p *ngFor="let comment of data.comments"><span class="comment___name">{{comment.postedBy.name+'&nbsp;'}}</span>{{comment.text}}</p>
@@ -34,5 +39,4 @@
         </mat-card-actions>
       </mat-card>
     </div>
-    <!-- <button (click)="like()" mat-button>name</button> -->
 </div>

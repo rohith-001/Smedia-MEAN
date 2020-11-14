@@ -45,6 +45,25 @@ export class UserService {
     return this.http.post("createpost",data,{headers: this.headers})
   }
 
+  searchUser(data: {
+      query: string;
+  }){
+    console.log(this.headers)
+    return this.http.post("search-users",data)
+  }
+
+  resetPassword(data: {
+    email: string;
+  }){
+    return this.http.post("reset-password",data)
+  }
+  updatePassword(data: {
+    password: string;
+    token: string;
+  }){
+    return this.http.post("new-password",data)
+  }
+
   likePost(data: {
     _id: string;
   }){
@@ -98,7 +117,6 @@ export class UserService {
   }
 }
 
-
 // import { Injectable } from '@angular/core';
 // import {HttpClient,HttpHeaders} from '@angular/common/http';
 
@@ -144,6 +162,25 @@ export class UserService {
 //   }){
 //     console.log(this.headers)
 //     return this.http.post("http://localhost:3000/createpost",data,{headers: this.headers})
+//   }
+
+//   searchUser(data: {
+//       query: string;
+//   }){
+//     console.log(this.headers)
+//     return this.http.post("http://localhost:3000/search-users",data)
+//   }
+
+//   resetPassword(data: {
+//     email: string;
+//   }){
+//     return this.http.post("http://localhost:3000/reset-password",data)
+//   }
+//   updatePassword(data: {
+//     password: string;
+//     token: string;
+//   }){
+//     return this.http.post("http://localhost:3000/new-password",data)
 //   }
 
 //   likePost(data: {
@@ -198,4 +235,3 @@ export class UserService {
 //     return this.http.put('http://localhost:3000/unfollow',{unfollowId},{headers: this.headers})
 //   }
 // }
-

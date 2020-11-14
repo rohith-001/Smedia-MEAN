@@ -1,7 +1,7 @@
 <form class="signin">
   <mat-card>
     <div style="text-align: center;">
-      <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">DEV</h1>
+      <h1>Sign in</h1>
     </div>
     <mat-form-field class="example-full-width">
       <mat-label>Email</mat-label>
@@ -20,7 +20,13 @@
       <input [value]="data.password" (input)="data.password=$event.target.value" type="password" matInput
         placeholder="Simple placeholder">
     </mat-form-field>
+    <div style="text-align: right;">
+      <a routerLink="/signup">Don't have an account?</a>&nbsp;
+      <a routerLink="/reset">Forgot password?</a>  
+    </div>
     <br>
-    <button mat-raised-button (click)="submit()" color="primary">Login</button>
+    <div style="text-align: center;">
+      <button mat-raised-button (click)="submit()" color="primary">Login</button>
+    </div>
   </mat-card>
 </form>

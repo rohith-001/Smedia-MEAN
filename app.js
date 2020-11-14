@@ -27,7 +27,7 @@ app.use(auth)
 app.use(post)
 app.use(user)
 app.get('/', (req, res) => {
-  res.redirect('/home'); 
+  res.redirect('/home');
 })
 
 app.use(express.static(path.join(__dirname,'public')))

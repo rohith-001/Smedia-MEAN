@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
     private router: Router) { 
       this.route.paramMap.subscribe(params => {
         const id = params.get("id")
-        this.profile.getUser(id).subscribe(data => {
+        this.profile.getUser(id).subscribe((data: any) => {
           this.datas = data;
           console.log(data,"profile")
         })
@@ -21,7 +21,16 @@ export class ProfileComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    
+  }
 
+  checkFollowers(data: Array<string>){
+    let user = JSON.parse(localStorage.getItem("user"))
+    if(data.includes(user._id)){
+     return true
+    }else{
+      return false
+    }
   }
 
   follow(followId){

@@ -13,6 +13,22 @@ export class NavComponent implements OnInit {
   }
 
   signOut(){
-    localStorage.clear()
+    localStorage.clear();
+    location.replace("/signin")
+  }
+
+  userCheck(){
+    if(!localStorage.getItem("user")){
+      location.replace("/signin");
+      alert("You have to create an account first")
+    }
+  }
+
+  register(){
+    if(localStorage.getItem("user")){
+      return false
+    }else{
+      return true
+    }
   }
 }

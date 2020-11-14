@@ -52,10 +52,15 @@ export class SignupComponent implements OnInit {
   ]);
 
   submit(){
-    this.userService.signupUser(this.data).subscribe(data => console.log(data));
+    this.userService.signupUser(this.data).subscribe(data => {
+      if(data){
+        location.replace("/signin")
+      }
+    });
   }
 
   selectImage(event){
+    console.log(event)
     if(event.target.files.length > 0){
       const file = event.target.files[0];
       this.data.pic = file;

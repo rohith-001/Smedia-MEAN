@@ -28,6 +28,9 @@ export class SigninComponent implements OnInit {
       console.log(this.jwt)
       localStorage.setItem("jwt",(this.jwt.token))
       localStorage.setItem("user",JSON.stringify(this.jwt.user))
+      if(data){
+        location.replace("/home")
+      }
     });
   }
 

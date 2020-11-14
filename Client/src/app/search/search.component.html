@@ -1,0 +1,17 @@
+<div>
+    <form class="signup">
+        <mat-card>
+          <mat-form-field class="example-full-width">
+            <mat-label>User name</mat-label>
+            <input matInput [value]="data.query" (input)="data.query=$event.target.value" placeholder="Type here">
+          </mat-form-field>
+          <br>
+          <button (click)="submit()" mat-raised-button color="primary">Search</button>
+        </mat-card>
+    </form>
+</div>
+<div *ngIf="searchData" style="width: 80%;margin: auto;">
+  <mat-list role="list">
+    <mat-list-item *ngFor="let item of searchData" role="listitem">{{item.email}}</mat-list-item>
+  </mat-list>
+</div>
