@@ -12,6 +12,6 @@
 </div>
 <div *ngIf="searchData" style="width: 80%;margin: auto;">
   <mat-list role="list">
-    <mat-list-item *ngFor="let item of searchData" role="listitem">{{item.email}}</mat-list-item>
+    <mat-list-item *ngFor="let item of searchData" role="listitem"><a [routerLink]="[ '/profile', item._id ]">{{item.email}}</a></mat-list-item>
   </mat-list>
 </div>
